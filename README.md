@@ -1,6 +1,6 @@
 # DesignWorkPlan LED Wall
 
-A LED wall created using Arduino and WS2811 led array.
+A LED wall created using Arduino and WS2811 LED array.
 
 ## Build & Upload
 
