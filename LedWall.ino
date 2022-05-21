@@ -1,4 +1,5 @@
 #include <FastLED.h>
+#include <avr/pgmspace.h>
 
 #define WIDTH 8
 #define HEIGHT 8
@@ -28,10 +29,10 @@ CRGB leds[LED_COUNT];
 // - Scaling: stretch to fill canvas
 // - Code output format: Arduino code, single bitmap
 // - Draw mode: 3 bytes per pixel
-// MAKE SURE TO REMOVE 'PROGMEM'
+
 #define SPEAKER_WIDTH 8
 #define SPEAKER_HEIGHT 8
-const uint32_t speaker [] = {
+const uint32_t speaker [] PROGMEM = {
   // 'voice, 8x8px
   0x00000001, 0x00010101, 0x00010100, 0x00000101, 0x00000101, 0x00cdd7df, 0x00000001, 0x00010000,
   0x00000101, 0x00000000, 0x00000100, 0x00010000, 0x00cdd7df, 0x00ccd7de, 0x00010101, 0x00000100,
@@ -45,7 +46,7 @@ const uint32_t speaker [] = {
 
 #define YOUTUBE_WIDTH 8
 #define YOUTUBE_HEIGHT 8
-const uint32_t youtube[] = {
+const uint32_t youtube[] PROGMEM = {
   // '1384060, 8x8px
   0x00010000, 0x00010000, 0x00000101, 0x00010001, 0x00000000, 0x00010000, 0x00000100, 0x00010101, 
   0x00000000, 0x00ff0001, 0x00fe0000, 0x00fe0000, 0x00fe0000, 0x00ff0100, 0x00ff0101, 0x00010100, 
@@ -57,8 +58,7 @@ const uint32_t youtube[] = {
   0x00010100, 0x00010001, 0x00010000, 0x00010000, 0x00010101, 0x00000101, 0x00000000, 0x00000000
 };
 
-
-void display_image(uint32_t* picture, int startX, int startY, int width, int height) {
+void display_image_progmem(uint8_t* progmem, int startX, int startY, int width, int height) {
   for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
       int dx = startX + x;
@@ -78,7 +78,8 @@ void display_image(uint32_t* picture, int startX, int startY, int width, int hei
         i = dy * WIDTH + dx;
       }
 
-      uint32_t color = picture[y * width + x];
+//      uint32_t color = picture[y * width + x];
+      uint32_t color = pgm_read_dword(progmem + (y * width + x) * 4);
       leds[i] = CRGB((color >> 16) & 0xFF, (color >> 8) & 0xFF, (color >> 0) & 0xFF);
     }
   }
@@ -167,11 +168,11 @@ void loop() {
   }
   else if (current_animation == 1) {
     clear_display();
-    display_image(youtube, 0, 0, YOUTUBE_WIDTH, YOUTUBE_HEIGHT);
+    display_image_progmem((uint8_t*)youtube, 0, 0, YOUTUBE_WIDTH, YOUTUBE_HEIGHT);
   }
   else if (current_animation == 2) {
     clear_display();
-    display_image(speaker, 0, 0, SPEAKER_WIDTH, SPEAKER_HEIGHT);
+    display_image_progmem((uint8_t*)speaker, 0, 0, SPEAKER_WIDTH, SPEAKER_HEIGHT);
   }
 
   FastLED.show();
