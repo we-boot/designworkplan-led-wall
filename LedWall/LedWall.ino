@@ -4,10 +4,11 @@
 #define WIDTH 8
 #define HEIGHT 8
 #define LED_COUNT WIDTH * HEIGHT
-#define BRIGHTNESS 30
+#define MAX_BRIGHTNESS 100
 #define LED_PIN 3
 #define COLOR_ORDER GRB
 #define CHIPSET WS2811
+#define BRIGHTNESS_PIN A0
 
 uint16_t arrow[] = {
   0b00011100,
@@ -130,7 +131,7 @@ void setup() {
   Serial.begin(9600);
 
   FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, LED_COUNT);
-  FastLED.setBrightness(BRIGHTNESS);
+  FastLED.setBrightness(10);
 
   Serial.println("Starting...\n");
   delay(1000);
@@ -174,6 +175,9 @@ void loop() {
     clear_display();
     display_image_progmem((uint8_t*)speaker, 0, 0, SPEAKER_WIDTH, SPEAKER_HEIGHT);
   }
+
+  int brightness = analogRead(BRIGHTNESS_PIN);
+  FastLED.setBrightness(map(brightness, 0, 1024, 0, MAX_BRIGHTNESS));
 
   FastLED.show();
   delay(100);
