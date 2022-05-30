@@ -126,7 +126,7 @@ void setup() {
   pinMode(10, INPUT_PULLUP);
   pinMode(11, INPUT_PULLUP);
   pinMode(12, INPUT_PULLUP);
-
+  pinMode(BRIGHTNESS_PIN, INPUT);
 
   Serial.begin(9600);
 
