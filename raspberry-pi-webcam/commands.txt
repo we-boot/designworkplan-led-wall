@@ -1,0 +1,6 @@
+https://github.com/SuperMakeSomething/neopixel-led-mirror/blob/master/neopixelMirror.py
+
+https://learn.adafruit.com/adafruit-rgb-matrix-plus-real-time-clock-hat-for-raspberry-pi
+https://github.com/adafruit/rpi-rgb-led-matrix
+
+curl -o haar.xml https://raw.githubusercontent.com/vschs007/flask-realtime-face-detection-opencv-python/master/haarcascade_frontalface_default.xml
