@@ -35,6 +35,7 @@ HEIGHT = 608
 FACE_MARGIN = 50
 POL_SPEED = 0.1
 ENHANCE_CONTRAST = 1.8
+HAAR_FILE = "haar.xml"
 
 # Configuration for the matrix
 options = RGBMatrixOptions()
@@ -46,7 +47,7 @@ options.hardware_mapping = "adafruit-hat" # If you have an Adafruit HAT: 'adafru
 matrix = RGBMatrix(options=options)
 
 print("open haar")
-face_cascade = cv2.CascadeClassifier("haar.xml")
+face_cascade = cv2.CascadeClassifier(HAAR_FILE)
 print("open webcam")
 webcam = PiCamera(resolution=(WIDTH, HEIGHT))
  
