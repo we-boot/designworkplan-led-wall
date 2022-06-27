@@ -1,6 +1,28 @@
 https://github.com/SuperMakeSomething/neopixel-led-mirror/blob/master/neopixelMirror.py
-
 https://learn.adafruit.com/adafruit-rgb-matrix-plus-real-time-clock-hat-for-raspberry-pi
 https://github.com/adafruit/rpi-rgb-led-matrix
 
+
+
+
+curl https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/rgb-matrix.sh >rgb-matrix.sh
+sudo bash rgb-matrix.sh
+
+sudo apt install python3-pip python3-opencv python3-picamera
+pip3 install numpy pillow
+
+curl -o webcam.py https://raw.githubusercontent.com/we-boot/designworkplan-led-wall/master/raspberry-pi-webcam/webcam.py
+
+
+
+curl -o webcam-face.py https://raw.githubusercontent.com/we-boot/designworkplan-led-wall/master/raspberry-pi-webcam/webcam-face-multithread.py
 curl -o haar.xml https://raw.githubusercontent.com/vschs007/flask-realtime-face-detection-opencv-python/master/haarcascade_frontalface_default.xml
+
+
+https://learn.adafruit.com/raspberry-pi-rgb-led-matrix-webapp/software-prerequisites
+sudo apt install default-jre
+
+
+
+
+https://learn.adafruit.com/web-enabled-pixel-on-raspberry-pi/going-further
