@@ -16,14 +16,17 @@
 # PIL ImageDraw module (draw shapes to images) explained here:
 # http://effbot.org/imagingbook/imagedraw.htm
 
-from PIL import Image
-from PIL import ImageDraw
+from PIL import Image, ImageEnhance, ImageDraw
 import time
 import io
 import numpy as np
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
+
+ENHANCE_CONTRAST = 1.8
+MATRIX_WIDTH = 32
+MATRIX_HEIGHT = 32
 
 # Configuration for the matrix
 options = RGBMatrixOptions()
@@ -42,15 +45,19 @@ matrix = RGBMatrix(options=options)
 #             # Reset stream to start at position 0 again
 #             stream.truncate(0)
 
-camera = PiCamera(resolution=(32,32))
+camera = PiCamera(resolution=(MATRIX_WIDTH, MATRIX_HEIGHT))
 print("create buffer")
-rawCapture = np.empty((32 * 32 * 3,), dtype=np.uint8)
+rawCapture = np.empty(MATRIX_WIDTH * MATRIX_HEIGHT * 3, dtype=np.uint8)
 while True:  
     print("capture")
     camera.capture(rawCapture, format="rgb", use_video_port=True)
     print("open")
-    image = Image.frombytes("RGB", (32,32), rawCapture, "raw")
+    image = Image.frombytes("RGB", (MATRIX_WIDTH, MATRIX_HEIGHT), rawCapture, "raw")
+
+    print("enhance")
+    image_enhancer = ImageEnhance.Contrast(image)
+    enhanced_image = image_enhancer.enhance(ENHANCE_CONTRAST)
     print("display")
-    matrix.SetImage(image, 0, 0)
+    matrix.SetImage(enhanced_image, 0, 0)
 
 matrix.Clear()

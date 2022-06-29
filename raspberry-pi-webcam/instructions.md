@@ -34,3 +34,7 @@ curl -o webcam.py https://raw.githubusercontent.com/we-boot/designworkplan-led-w
 ```
 python3 webcam.py
 ```
+
+## 7. Edit it!
+
+You can open the webcam.py script to set the matrix width/height and chain length when using multiple panels.

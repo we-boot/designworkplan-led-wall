@@ -30,3 +30,4 @@ java -jar payara-micro-prerelease-2016-11-24.jar --deploy rpi-rgb-led-matrix-web
 https://learn.adafruit.com/web-enabled-pixel-on-raspberry-pi/going-further
 
 curl -o webserver.jar -L https://learn.adafruit.com/system/assets/assets/000/026/192/original/pixel-web-enabled-0.0.1-SNAPSHOT-jar-with-dependencies.jar?1435773492
+sudo java -jar webserver.jar -l 11 -p 80
