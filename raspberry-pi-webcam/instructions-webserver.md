@@ -24,6 +24,14 @@ cd ~/rpi-rgb-led-matrix
 ln -s bindings/python/ python
 ```
 
+## 3.5 Download runtime
+
+```bash
+cd ~
+# In ~
+wget https://cdn-learn.adafruit.com/assets/assets/000/037/927/original/payara-micro-prerelease-2016-11-24.jar
+```
+
 ## 4. Download application
 
 ```bash
