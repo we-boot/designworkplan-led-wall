@@ -52,7 +52,7 @@ Use your personal computer's webbrowser to go to `http://<ip of rpi>:8080/rpi-rg
 
 ## 8. Edit panel count (when using more than 1 panel)
 
-Go to the settings tab in the web application (`http://<ip of rpi>:8080/rpi-rgb-led-matrix-webapp-0.0.1-SNAPSHOT/settings/`) and add the `--led-chain=4` option to the *Command Line Flags* input.
+Go to the settings tab in the web application (`http://<ip of rpi>:8080/rpi-rgb-led-matrix-webapp-0.0.1-SNAPSHOT/settings/`) and add the `--led-pixel-mapper="U-mapper" --led-chain=4` options to the *Command Line Flags* input.
 
 **Here are some more flags you can add:**
 

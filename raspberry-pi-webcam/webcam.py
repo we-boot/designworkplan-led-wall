@@ -25,13 +25,15 @@ from picamera.array import PiRGBArray
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
 ENHANCE_CONTRAST = 1.8
-MATRIX_WIDTH = 32
-MATRIX_HEIGHT = 32
+MATRIX_WIDTH = 64
+MATRIX_HEIGHT = 64
 
 # Configuration for the matrix
 options = RGBMatrixOptions()
-options.rows = 32
-options.chain_length = 1
+options.rows = MATRIX_HEIGHT
+options.chain_length = 4
+if options.chain_length >= 4:
+    options.pixel_mapper_config = "U-mapper"
 options.parallel = 1
 options.hardware_mapping = 'adafruit-hat' # If you have an Adafruit HAT: 'adafruit-hat'
 
